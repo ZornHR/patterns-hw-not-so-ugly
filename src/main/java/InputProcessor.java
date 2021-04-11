@@ -2,6 +2,7 @@ import generators.AppearanceGenerator;
 import generators.FioGenerator;
 import generators.PhoneGenerator;
 import generators.PhysGenerator;
+import person.FIO;
 import person.Person;
 import person.Phone;
 import person.Physical;
@@ -18,9 +19,7 @@ public class InputProcessor {
 
             final FioGenerator fioGenerator = new FioGenerator();
             fioGenerator.generateParams(intCode);
-            final String lastName = fioGenerator.getLastName();
-            final String firstName = fioGenerator.getFirstName();
-            final String middleName = fioGenerator.getMiddleName();
+            final FIO fio = fioGenerator.buildResponse();
 
             final PhysGenerator physGenerator = new PhysGenerator();
             physGenerator.generateParams(intCode);
@@ -39,7 +38,7 @@ public class InputProcessor {
             }
 
             result = new Person(input,
-                    lastName, firstName, middleName,
+                    fio,
                     physical,
                     appearance,
                     phone).toString();
